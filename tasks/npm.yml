@@ -1,2 +1,3 @@
-- name: Install npm
+-
+  name: Install npm
   command: sudo -iu {{ user }} npm install -g express

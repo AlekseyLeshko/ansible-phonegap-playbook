@@ -18,18 +18,44 @@
       with_items:
         - vim
 
-    - include: tasks/nvm.yml
+    -
+      include: tasks/java.yml
 
-    - { include: tasks/node.yml, node: { version: 0.11.13, setDefault: false } }
+    -
+      include: tasks/ant.yml
 
-    - { include: tasks/node.yml, node: { version: 0.10.29, setDefault: true } }
+    -
+      include: tasks/android-sdk.yml
+      vars:
+        android:
+          version: x86_64-20140702
+          filename: adt-bundle-linux-x86_64-20140702
+          path: ~/Programs/adt-bundle-linux-x86_64-20140702
+        downloadsFolder: ~/Downloads/
 
-    - include: tasks/npm.yml
+    -
+      include: tasks/nvm.yml
 
-    - include: tasks/gulp.yml
+    -
+      { include: tasks/node.yml, node: { version: 0.11.13, setDefault: false } }
 
-    - include: tasks/rvm.yml
+    -
+      { include: tasks/node.yml, node: { version: 0.10.29, setDefault: true } }
 
-    - { include: tasks/ruby.yml, ruby: { version: 2.1.2 }}
+    -
+      include: tasks/npm.yml
 
-    - include: tasks/gems.yml
+    -
+      include: tasks/gulp.yml
+
+    -
+      include: tasks/rvm.yml
+
+    -
+      { include: tasks/ruby.yml, ruby: { version: 2.1.2 }}
+
+    -
+      include: tasks/gems.yml
+
+    -
+      include: tasks/gems.yml

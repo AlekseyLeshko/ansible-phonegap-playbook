@@ -1,0 +1,3 @@
+-
+  name: Install ant
+  apt: pkg=ant update_cache=yes state=installed

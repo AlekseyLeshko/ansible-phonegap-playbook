@@ -1,14 +1,17 @@
-- name: Install node {{ node.version }}
+-
+  name: Install node {{ node.version }}
   command: sudo -iu {{ user }} nvm install {{ node.version }}
   register: nvm_install_result
   changed_when: "'is already installed.' not in nvm_install_result.stdout"
 
-- name: Check if {{ node.version }} is the default node version
+-
+  name: Check if {{ node.version }} is the default node version
   shell: sudo -iu {{ user }} nvm ls | grep -e 'default -> {{ node.version }}'
   register: nvm_check_default
   changed_when: False
   ignore_errors: True
 
-- name: Set default node version to {{ node.version }}
+-
+  name: Set default node version to {{ node.version }}
   command: sudo -iu {{ user }} nvm alias default {{ node.version }}
   when: nvm_check_default and node.setDefault
