@@ -1,0 +1,2 @@
+- name: Install gulp
+  command: sudo -iu {{ user }} npm install -g gulp

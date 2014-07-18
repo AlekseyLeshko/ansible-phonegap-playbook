@@ -1,0 +1,22 @@
+---
+-
+  hosts: all
+
+  vars:
+    user: vagrant
+
+  tasks:
+    -
+      name: apt-get update
+      apt: update_cache=yes cache_valid_time=360000
+      sudo: true
+
+    - include: tasks/nvm.yml
+
+    - { include: tasks/node.yml, node: { version: 0.11.13, setDefault: false } }
+
+    - { include: tasks/node.yml, node: { version: 0.10.29, setDefault: true } }
+
+    - include: tasks/npm.yml
+
+    - include: tasks/gulp.yml

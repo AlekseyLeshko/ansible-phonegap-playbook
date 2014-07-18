@@ -1,0 +1,30 @@
+---
+-
+  hosts: all
+
+  vars:
+    username: user
+    android:
+      version: x86_64-20140702
+      filename: adt-bundle-linux-x86_64-20140702
+      path: ~/Programs/adt-bundle-linux-x86_64-20140702
+    downloadsFolder: ~/Downloads/
+
+  tasks:
+    -
+      name: apt-get update
+      apt: update_cache=yes cache_valid_time=360000
+      sudo: true
+    -
+      name: Download android SDK
+      shell: wget -P {{downloadsFolder}} http://dl.google.com/android/adt/adt-bundle-linux-{{android.version}}.zip
+    -
+      name: Unzip android SDK
+      shell: unzip {{downloadsFolder}}{{android.filename}}.zip -d ~/Programs
+    -
+      name: Change owner for android SDK
+      shell: chown -R {{username}} {{android.path}}
+      sudo: true
+    -
+      name: Add android path to bashrc
+      shell: echo "\n# Android SDK\nPATH=\$PATH:{{android.path}}/sdk/platform-tools:{{android.path}}/sdk/tools" >> ~/.bashrc

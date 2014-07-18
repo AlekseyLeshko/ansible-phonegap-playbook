@@ -1,0 +1,22 @@
+---
+-
+  hosts: all
+
+  tasks:
+    -
+      name: apt-get update
+      apt: update_cache=yes cache_valid_time=360000
+      sudo: true
+
+    -
+      name: Add java repositories
+      sudo: true
+      apt_repository: repo='ppa:webupd8team/java' update_cache=yes
+
+    -
+      name: Shell accepted oracal license
+      shell: echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
+
+    -
+      name: Install java7
+      apt: pkg=oracle-java7-installer update_cache=yes state=installed
