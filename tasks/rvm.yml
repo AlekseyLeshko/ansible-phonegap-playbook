@@ -1,0 +1,16 @@
+---
+-
+  name: Install packages
+  apt: pkg={{ item }} state=installed
+  sudo: true
+  with_items:
+    - libgdbm-dev
+    - libncurses5-dev
+    - automake
+    - libtool
+    - bison
+    - libffi-dev
+
+-
+  name: Install RVM and Ruby
+  shell: curl -L https://get.rvm.io | bash -s stable
