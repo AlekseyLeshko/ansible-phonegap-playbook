@@ -56,6 +56,3 @@
 
     -
       include: tasks/gems.yml
-
-    -
-      include: tasks/gems.yml
