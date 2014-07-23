@@ -56,3 +56,6 @@
 
     -
       include: tasks/gems.yml
+
+    -
+      include: tasks/phonegap.yml
